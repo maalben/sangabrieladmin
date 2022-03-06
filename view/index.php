@@ -1283,7 +1283,6 @@
 	<script src="assets/js/toastr.js"></script>
 	<script src="assets/js/neon-chat.js"></script>
 
-
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/neon-custom.js"></script>
 
