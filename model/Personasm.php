@@ -6,7 +6,7 @@ class Personasm{
     private $listaPersonas;
 
     public function __construct(){
-        $this->bd = Conexion::getConexion();
+        $this->bd = Connection::getConnection();
         $this->listaPersonas = array();
     }
 

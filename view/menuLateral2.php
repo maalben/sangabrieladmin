@@ -6,8 +6,8 @@
 
             <!-- logo -->
             <div class="logo">
-                <a href="index">
-                    <img src="assets/images/logo.png" width="120" alt="" />
+                <a href="../">
+                    <img src="../assets/images/logo.png" width="120" alt="" />
                 </a>
             </div>
 
@@ -39,12 +39,12 @@
                 </a>
                 <ul class="visible">
                     <li>
-                        <a href="index/consultOwner">
+                        <a href="../index/consultOwner">
                             <span class="title">Consultar</span>
                         </a>
                     </li>
                     <li>
-                        <a href="index/registerOwner">
+                        <a href="../index/registerOwner">
                             <span class="title">Registrar</span>
                         </a>
                     </li>
