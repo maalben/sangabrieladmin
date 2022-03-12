@@ -1,0 +1,33 @@
+Options +FollowSymLinks
+# This file is - if you set up MINI correctly - not needed.
+# But, for fallback reasons (if you don't route your vhost to /public), it will stay here.
+RewriteEngine on
+
+# Rewrite index is not file exits and directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+
+RewriteRule ^index/(.*)$ index.php?accion=$1 [L]
+
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+
+# Protect error log by preventing public access
+<Files PHP_errors.log>
+ Order allow,deny
+ Deny from all
+ Satisfy All
+</Files>
+
+# remove ext .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+
+# remove ext .html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html
