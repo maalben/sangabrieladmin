@@ -50,45 +50,45 @@
                     </li>
                 </ul>
             </li>
-            <li class="has-sub">
+            <li class="active opened active has-sub">
                 <a href="layout-api.html">
                     <i class="entypo-users"></i>
                     <span class="title">Beneficiarios</span>
                 </a>
                 <ul>
                     <li>
-                        <a href="layout-api.html">
-                            <span class="title">Layout API</span>
+                        <a href="index/associateHolder">
+                            <span class="title">Asociar con titular</span>
                         </a>
                     </li>
                     <li>
-                        <a href="layout-collapsed-sidebar.html">
-                            <span class="title">Collapsed Sidebar</span>
+                        <a href="index/consultBeneficiaries">
+                            <span class="title">Listado de beneficiarios</span>
                         </a>
                     </li>
 
                 </ul>
             </li>
-            <li class="has-sub">
+            <li class="active opened active has-sub">
                 <a href="ui-panels.html">
                     <i class="entypo-trophy"></i>
                     <span class="title">Asesor</span>
                 </a>
                 <ul>
                     <li>
-                        <a href="ui-panels.html">
-                            <span class="title">Panels</span>
+                        <a href="index/consultAdvisors">
+                            <span class="title">Listado</span>
                         </a>
                     </li>
                     <li>
-                        <a href="ui-tiles.html">
-                            <span class="title">Tiles</span>
+                        <a href="index/enrollAdvisor">
+                            <span class="title">Matricular</span>
                         </a>
                     </li>
 
                 </ul>
             </li>
-            <li class="has-sub">
+            <li class="active opened active has-sub">
                 <a href="forms-main.html">
                     <i class="entypo-flash"></i>
                     <span class="title">Complementarios</span>

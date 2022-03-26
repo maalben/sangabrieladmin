@@ -5,10 +5,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Neon Admin Panel" />
     <meta name="author" content="" />
 
-    <!--	<link rel="icon" href="assets/images/favicon.ico">-->
     <link rel="icon" href="assets/images/cropped-logo-unico-32x32.png" sizes="32x32" />
     <link rel="icon" href="assets/images/cropped-logo-unico-192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon-precomposed" href="assets/images/cropped-logo-unico-180x180.png" />
