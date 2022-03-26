@@ -85,6 +85,16 @@
 <link rel="stylesheet" href="../assets/js/jvectormap/jquery-jvectormap-1.2.2.css">
 <!-- Imported styles on this page -->
 <link rel="stylesheet" href="../assets/js/datatables/datatables.css">
+<!-- Imported styles on this page -->
+<link rel="stylesheet" href="../assets/js/select2/select2-bootstrap.css">
+<link rel="stylesheet" href="../assets/js/select2/select2.css">
+<link rel="stylesheet" href="../assets/js/selectboxit/jquery.selectBoxIt.css">
+<link rel="stylesheet" href="../assets/js/daterangepicker/daterangepicker-bs3.css">
+<link rel="stylesheet" href="../assets/js/icheck/skins/minimal/_all.css">
+<link rel="stylesheet" href="../assets/js/icheck/skins/square/_all.css">
+<link rel="stylesheet" href="../assets/js/icheck/skins/flat/_all.css">
+<link rel="stylesheet" href="../assets/js/icheck/skins/futurico/futurico.css">
+<link rel="stylesheet" href="../assets/js/icheck/skins/polaris/polaris.css">
 
 <!-- Bottom scripts (common) -->
 <script src="../assets/js/gsap/TweenMax.min.js"></script>
@@ -96,6 +106,7 @@
 <script src="../assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 
 <!-- Imported scripts on this page -->
+<script src="../assets/js/bootstrap-switch.min.js"></script>
 <script src="../assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>
 <script src="../assets/js/jquery.sparkline.min.js"></script>
 <script src="../assets/js/raphael-min.js"></script>
@@ -104,6 +115,20 @@
 <script src="../assets/js/neon-chat.js"></script>
 <!-- Imported scripts on this page -->
 <script src="../assets/js/datatables/datatables.js"></script>
+<!-- Imported scripts on this page -->
+<script src="../assets/js/select2/select2.min.js"></script>
+<script src="../assets/js/bootstrap-tagsinput.min.js"></script>
+<script src="../assets/js/typeahead.min.js"></script>
+<script src="../assets/js/selectboxit/jquery.selectBoxIt.min.js"></script>
+<script src="../assets/js/bootstrap-datepicker.js"></script>
+<script src="../assets/js/bootstrap-timepicker.min.js"></script>
+<script src="../assets/js/bootstrap-colorpicker.min.js"></script>
+<script src="../assets/js/moment.min.js"></script>
+<script src="../assets/js/daterangepicker/daterangepicker.js"></script>
+<script src="../assets/js/jquery.multi-select.js"></script>
+<script src="../assets/js/icheck/icheck.min.js"></script>
+<script src="../assets/js/neon-chat.js"></script>
+<script src="../assets/js/jquery.validate.min.js"></script>
 
 <!-- JavaScripts initializations and stuff -->
 <script src="../assets/js/neon-custom.js"></script>

@@ -38,29 +38,36 @@
             <th>Email</th>
             <th>Mensualidad</th>
             <th>Afiliados</th>
+            <th>Fecha registro</th>
         </tr>
         </thead>
         <tbody>
         <?php
         if($consulta !== ''){
+        foreach($consulta as $dato):
 
+            $quantityOwner = $dato['cantidadbeneficiarios'];
 
-        foreach($consulta as $dato): ?>
+            if($this->beneficiariesModel->getQuantityBeneficiaries($dato['cedulaafiliado']) > 0){
+                $quantityOwner = $this->beneficiariesModel->getQuantityBeneficiaries($dato['cedulaafiliado']);
+            }
+        ?>
         <tr class="odd gradeX">
             <td><?php echo $dato['id']; ?></td>
             <td><?php echo $dato['cedulaafiliado']; ?></td>
-            <td><?php echo $dato['nombretitular']; ?></td>
-            <td><?php echo $dato['apellidotitular']; ?></td>
+            <td><?php echo utf8_decode($dato['nombretitular']); ?></td>
+            <td><?php echo utf8_decode($dato['apellidotitular']); ?></td>
             <td><?php echo $dato['estadociviltitular']; ?></td>
             <td><?php echo $dato['fechanacimientotitular']; ?></td>
             <td><?php echo $dato['edadtitular']; ?></td>
-            <td><?php echo $dato['direcciontitular']; ?></td>
+            <td><?php echo utf8_decode($dato['direcciontitular']); ?></td>
             <td><?php echo utf8_decode($dato['barriotitular']); ?></td>
-            <td><?php echo $dato['municipiotitular']; ?></td>
+            <td><?php echo utf8_decode($dato['municipiotitular']); ?></td>
             <td><?php echo $dato['celulartitular']; ?></td>
             <td><?php echo $dato['correotitular']; ?></td>
             <td><?php echo $dato['mensualidadtitular']; ?></td>
-            <td><?php echo $dato['cantidadbeneficiarios']; ?></td>
+            <td><?php echo $quantityOwner; ?></td>
+            <td><?php echo $dato['recordDate']; ?></td>
         </tr>
         <?php endforeach;
         }
@@ -83,6 +90,7 @@
             <th>Email</th>
             <th>Mensualidad</th>
             <th>Afiliados</th>
+            <th>Fecha registro</th>
         </tr>
         </tfoot>
     </table>
