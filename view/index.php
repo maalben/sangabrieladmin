@@ -1,11 +1,11 @@
 <?php require_once __DIR__.'/resources.php';
-    echo "Sesión: ".$_SESSION['lastActive'] . "<br>";
-    echo "Fingerprint: ".$_SESSION['fingerPrint'] . "<br>";
-    echo "Loggedin: ".$_SESSION['loggedin'] . "<br>";
-    echo  "Nick: ".$_SESSION['username'] . "<br>";
-    echo "Nombre: ".$_SESSION['name'] . "<br>";
-    echo "Rol: ".$_SESSION['rol'] . "<br>";
-    echo "ID: ".$_SESSION['id'] . "<br>";
+//    echo "Sesión: ".$_SESSION['lastActive'] . "<br>";
+//    echo "Fingerprint: ".$_SESSION['fingerPrint'] . "<br>";
+//    echo "Loggedin: ".$_SESSION['loggedin'] . "<br>";
+//    echo  "Nick: ".$_SESSION['username'] . "<br>";
+//    echo "Nombre: ".$_SESSION['name'] . "<br>";
+//    echo "Rol: ".$_SESSION['rol'] . "<br>";
+//    echo "ID: ".$_SESSION['id'] . "<br>";
 ?>
     <div class="col-sm-3 col-xs-6">
 
