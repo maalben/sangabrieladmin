@@ -7,6 +7,7 @@ require_once __DIR__.'/../model/Constants.php';
 class AdvisorController{
 
     private $advisorModel;
+    private $profileModel;
 
     public function __construct(){
         $this->advisorModel = new AdvisorModel();

@@ -40,11 +40,6 @@ var neonLogin = neonLogin || {};
 			
 			submitHandler: function(ev)
 			{
-				/* 
-					Updated on v1.1.4
-					Login form now processes the login data, here is the file: data/sample-login-form.php
-				*/
-				
 				$(".login-page").addClass('logging-in'); // This will hide the login form and init the progress bar
 					
 					
@@ -67,6 +62,7 @@ var neonLogin = neonLogin || {};
 						data: {
 							username: $("input#username").val(),
 							password: $("input#password").val(),
+							token: $("input#token").val(),
 						},
 						error: function()
 						{
@@ -358,7 +354,7 @@ var neonLogin = neonLogin || {};
 			
 			// Create Progress Circle
 			var bg = neonLogin.lockscreen_progress_canvas,
-				ctx = ctx = bg.getContext('2d'),
+				ctx = bg.getContext('2d'),
 				imd = null,
 				circ = Math.PI * 2,
 				quart = Math.PI / 2,
