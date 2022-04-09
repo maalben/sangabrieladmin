@@ -1,4 +1,4 @@
-<?php require_once 'resources2.php' ?>
+<?php require_once __DIR__.'/resources2.php' ?>
 
 <h2>Registro de Beneficiarios</h2>
 

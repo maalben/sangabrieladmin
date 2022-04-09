@@ -71,4 +71,10 @@ class OwnerModel{
         }
         return '';
     }
+
+    public function getQuantityOwner(){
+        $getDataOwner = $this->bd->query("SELECT COUNT(*) as totalOwner FROM tbltitular");
+        $data = $getDataOwner->fetch_assoc();
+        return $data['totalOwner'];
+    }
 }

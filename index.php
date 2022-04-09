@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once __DIR__.'/controller/mainController.php';
 
@@ -12,6 +12,12 @@ if(empty($_REQUEST['accion'])){
         $beneficiariesController->$method();
     }elseif(method_exists($advisorsController, $method)){
         $advisorsController->$method();
+    }elseif(method_exists($logoutController, $method)){
+        $logoutController->$method();
+    }elseif(method_exists($profileController, $method)){
+        $profileController->$method();
+    }elseif(strpos($method, '/')){
+        Util::messageAlert('Ha ocurrido un error');
     }else{
         $controller_index->index();
     }

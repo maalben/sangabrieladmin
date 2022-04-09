@@ -9,8 +9,8 @@
             <li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-                    Administrador
+<!--                    <img src="assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />-->
+                    <?php echo $_SESSION['name']; ?>
                 </a>
             </li>
 
@@ -27,7 +27,7 @@
         <ul class="list-inline links-list pull-right">
 
             <li>
-                <a href="extra-login.html">
+                <a href="index/logout">
                     Log Out <i class="entypo-logout right"></i>
                 </a>
             </li>

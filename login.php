@@ -1,3 +1,10 @@
+<?php
+ini_set('session.cookie_secure', 1);
+ini_set('session.cookie_httponly', 1);
+ini_set('session.use_cookies', 1);
+ini_set('session.use_only_cookies', 1);
+require_once __DIR__.'/resources/session.php';
+require_once __DIR__.'/model/Util.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,10 +39,8 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-
 </head>
 <body class="page-body login-page login-form-fall" data-url="http://neon.dev">
-
 
 <!-- This is needed when you send requests via Ajax -->
 <script type="text/javascript">
@@ -73,18 +78,14 @@ var baseurl = '';
 			
 			<div class="form-login-error">
 				<h3>Login invalido</h3>
-				<p>Enter <strong>demo</strong>/<strong>demo</strong> as login and password.</p>
 			</div>
 			
 			<form method="post" role="form" id="form_login">
-				
 				<div class="form-group">
-					
 					<div class="input-group">
 						<div class="input-group-addon">
 							<i class="entypo-user"></i>
 						</div>
-						
 						<input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
 					</div>
 					
@@ -96,34 +97,26 @@ var baseurl = '';
 						<div class="input-group-addon">
 							<i class="entypo-key"></i>
 						</div>
-						
 						<input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
 					</div>
 				
 				</div>
 				
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block btn-login">
+                    <input type="hidden" id="token" name="token" value="<?php echo Util::_token(); ?>">
+					<button type="submit" class="btn btn-primary btn-block btn-login" name="login_sbt">
 						<i class="entypo-login"></i>
 						Login In
 					</button>
 				</div>
-				
 			</form>
 			
-			
 			<div class="login-bottom-links">
-				
 				<a href="extra-forgot-password.html" class="link">Forgot your password?</a>
-
 			</div>
-			
 		</div>
-		
 	</div>
-	
 </div>
-
 
 	<!-- Bottom scripts (common) -->
 	<script src="assets/js/gsap/TweenMax.min.js"></script>
@@ -135,10 +128,8 @@ var baseurl = '';
 	<script src="assets/js/jquery.validate.min.js"></script>
 	<script src="assets/js/neon-login.js"></script>
 
-
 	<!-- JavaScripts initializations and stuff -->
 	<script src="assets/js/neon-custom.js"></script>
-
 
 	<!-- Demo Settings -->
 	<script src="assets/js/neon-demo.js"></script>

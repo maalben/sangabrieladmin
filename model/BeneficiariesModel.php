@@ -39,4 +39,10 @@ class BeneficiariesModel{
         $toList = $this->bd->query("SELECT * FROM tblbeneficiarios WHERE cedulatitular=$ownerIdentify");
         return $toList->num_rows;
     }
+
+    public function getTotalQuantityBeneficiaries(){
+        $query = $this->bd->query('SELECT COUNT(*) as totalBeneficiaries FROM tblbeneficiarios');
+        $totalBeneficiaries = $query->fetch_assoc();
+        return $totalBeneficiaries['totalBeneficiaries'];
+    }
 }

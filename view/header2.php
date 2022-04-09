@@ -5,7 +5,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Neon Admin Panel" />
     <meta name="author" content="" />
 
     <!--	<link rel="icon" href="assets/images/favicon.ico">-->
@@ -23,6 +22,9 @@
     <link rel="stylesheet" href="../assets/css/neon-theme.css">
     <link rel="stylesheet" href="../assets/css/neon-forms.css">
     <link rel="stylesheet" href="../assets/css/custom.css">
+
+    <script src="../assets/js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/css/sweetalert.css">
 
     <script src="../assets/js/jquery-1.11.3.min.js"></script>
 

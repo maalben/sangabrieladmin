@@ -37,9 +37,14 @@ class AdvisorModel{
         $bankingEntity = $data['entidadBancariaAsesor'];
         $recordDate = Util::getDateRecord();
 
+        $completeName = $firstName . ' ' . $lastName;
+
         $sql = "INSERT INTO tblasesores (nombre, apellido, cedula, codigoasesor, emailasesor, direccionasesor, telefonoasesor, celularasesor, bancocuentaasesor, numerocuentaasesor, recordDate) VALUES ('$firstName', '$lastName', '$identify', '$code', '$email', '$address', '$telephone', '$phone', '$bankingEntity', '$accountNumber', '$recordDate')";
 
+        $sqlAdvisor = "INSERT INTO tblusuarios (nombre, nick, clave, rol) VALUES ('$completeName', '$identify', '$code', '2')";
+
         mysqli_query($this->bd, $sql) or die ('Error en el guardado.');
+        mysqli_query($this->bd, $sqlAdvisor) or die ('Error en el guardado.');
     }
 
     public function getQuantityAdvisors(){

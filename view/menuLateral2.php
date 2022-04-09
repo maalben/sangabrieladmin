@@ -95,15 +95,15 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="forms-main.html">
-                            <span class="title">Basic Elements</span>
+                        <a href="../index/profile">
+                            <span class="title">Perfil</span>
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="forms-advanced.html">
                             <span class="title">Advanced Plugins</span>
                         </a>
-                    </li>
+                    </li>-->
 
                 </ul>
             </li>
