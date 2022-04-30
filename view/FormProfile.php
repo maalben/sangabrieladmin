@@ -41,13 +41,14 @@
                             <input type="text" required class="form-control" id="txtnick" name="txtnick" value="<?php echo $dato['nick']; ?>">
                         </div>
                     </div>
-
-                    <div class="form-group">
+                        <input type="hidden" required class="form-control" id="txtrol" name="txtrol" value="<?php
+                        echo $dato['rol']; ?>">
+                    <!--<div class="form-group">
                         <label for="txtrol" class="col-sm-3 control-label">Rol: </label>
                         <div class="col-sm-5">
-                            <input type="text" required class="form-control" id="txtrol" name="txtrol" value="<?php echo $dato['rol']; ?>">
+
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <label for="txtpassword" class="col-sm-3 control-label">Password: </label>
@@ -75,21 +76,30 @@
                         <div class="form-group">
                             <label for="txtcedula" class="col-sm-3 control-label">C&eacute;dula: </label>
                             <div class="col-sm-5">
-                                <input type="text" required class="form-control" id="txtcedula" name="txtcedula" value="<?php echo $dato['cedula']; ?>">
+                                <p><?php echo utf8_decode($dato['cedula']); ?></p>
+                                <input type="hidden" id="txtcedula" name="txtcedula" value="<?php echo $dato['cedula']; ?>">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="txtnick" class="col-sm-3 control-label">Nick o c&oacute;digo: </label>
                             <div class="col-sm-5">
-                                <input type="text" required class="form-control" id="txtnick" name="txtnick" value="<?php echo $dato['codigoasesor']; ?>">
+                                <p><?php echo utf8_decode($dato['codigoasesor']); ?></p>
+                                <input type="hidden" id="txtnick" name="txtnick" value="<?php echo $dato['codigoasesor']; ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtnick" class="col-sm-3 control-label">Password: </label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="txtpassword" name="txtpassword" placeholder="(Opcional si deseas cambiar la clave)">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="txtemail" class="col-sm-3 control-label">Email: </label>
                             <div class="col-sm-5">
-                                <input type="text" required class="form-control" id="txtemail" name="txtemail" value="<?php echo $dato['emailasesor']; ?>">
+                                <input type="text" required class="form-control" id="txtcorreo" name="txtcorreo" value="<?php echo $dato['emailasesor']; ?>">
                             </div>
                         </div>
 
@@ -115,9 +125,21 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="txtcelular" class="col-sm-3 control-label">Tipo de cuenta: </label>
+                            <div class="col-sm-5">
+                                <select name="seltipocuenta" id="seltipocuenta" class="form-control" required>
+                                    <?php $accountType = utf8_decode($dato['tipocuenta']); ?>
+                                    <option value="Cuenta de ahorros" <?php if ($accountType === 'Cuenta de ahorros'): ?>selected<?php endif; ?>>Cuenta de ahorros</option>
+                                    <option value="Bancolombia a la mano" <?php if ($accountType === 'Bancolombia a la mano'): ?>selected<?php endif; ?>>Bancolombia a la mano</option>
+                                    <option value="Cuenta corriente" <?php if ($accountType === 'Cuenta corriente'): ?>selected<?php endif; ?>>Cuenta corriente</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="txtbanco" class="col-sm-3 control-label">Banco cuenta: </label>
                             <div class="col-sm-5">
-                                <input type="text" required class="form-control" id="txtbanco" name="txtbanco" value="<?php echo $dato['bancocuentaasesor']; ?>">
+                                <input type="text" required class="form-control" id="txtentidadbancaria" name="txtentidadbancaria" value="<?php echo $dato['bancocuentaasesor']; ?>">
                             </div>
                         </div>
 

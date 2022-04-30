@@ -7,7 +7,8 @@ require_once __DIR__.'/../controller/BeneficiariesController.php';
 require_once __DIR__.'/../controller/AdvisorController.php';
 require_once __DIR__.'/../controller/LogoutController.php';
 require_once __DIR__.'/../controller/ProfileController.php';
-require_once __DIR__.'/../controller/Personasc.php';
+require_once __DIR__.'/../controller/PermissionsController.php';
+require_once __DIR__.'/../controller/PayController.php';
 require_once __DIR__.'/../model/Util.php';
 
 $controller_index = new IndexController();
@@ -16,4 +17,5 @@ $beneficiariesController = new BeneficiariesController();
 $advisorsController = new AdvisorController();
 $logoutController = new LogoutController();
 $profileController = new ProfileController();
-$controller_personas = new Personasc();
+$permissionController = new PermissionsController();
+$payController = new PayController();

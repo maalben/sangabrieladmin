@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="assets/css/neon-core.css">
     <link rel="stylesheet" href="assets/css/neon-theme.css">
     <link rel="stylesheet" href="assets/css/neon-forms.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
 
     <script src="assets/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/sweetalert.css">
@@ -34,6 +33,7 @@
     <script src="assets/js/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="assets/js/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="assets/css/custom.css">
 
 </head>
 <body class="page-body  page-fade" data-url="http://neon.dev">

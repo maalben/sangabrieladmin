@@ -27,10 +27,10 @@
 
                     <div class="form-group">
                         <label for="txtcedula" class="col-sm-3 control-label">C&eacute;dula: </label>
+                        <input type="hidden" name="txtasesor" id="txtasesor" value="<?php echo $_SESSION['username']; ?>">
 
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="txtcedula" id="txtcedula" data-validate="number"
-                                   data-message-required="Campo numerico." placeholder="Campo requerido">
+                            <input type="text" class="form-control" name="txtcedula" id="txtcedula" data-validate="number" data-message-required="Campo numerico." placeholder="Campo requerido">
                         </div>
                     </div>
 
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Estado civil:</label>
+                        <label class="col-sm-3 control-label">Municipio:</label>
 
                         <div class="col-sm-5">
                             <select name="selmunicipio" id="selmunicipio" class="form-control">
@@ -129,8 +129,7 @@
                         <label for="txtcorreo" class="col-sm-3 control-label">Correo:</label>
 
                         <div class="col-sm-5">
-                        <input type="text" class="form-control" id="txtcorreo" name="txtcorreo" data-validate="email"
-                               placeholder="Campo de correo" />
+                        <input type="text" class="form-control" id="txtcorreo" name="txtcorreo" data-validate="email" placeholder="Campo de correo" />
                         </div>
                     </div>
 
@@ -144,7 +143,7 @@
                     <div class="form-group">
                         <label for="txtmensualidad" class="col-sm-3 control-label">Mensualidad: </label>
                         <div class="col-sm-5">
-                        <input type="text" class="form-control" id="txtmensualidad" name="txtmensualidad" data-validate="number" placeholder="Campo num&eacute;rico" />
+                        <input type="text" class="form-control" id="txtmensualidad" name="txtmensualidad" data-validate="number" required placeholder="Campo num&eacute;rico" />
                         </div>
                     </div>
 

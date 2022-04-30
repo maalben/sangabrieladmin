@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="" />
 
-    <!--	<link rel="icon" href="assets/images/favicon.ico">-->
     <link rel="icon" href="../assets/images/cropped-logo-unico-32x32.png" sizes="32x32" />
     <link rel="icon" href="../assets/images/cropped-logo-unico-192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon-precomposed" href="../assets/images/cropped-logo-unico-180x180.png" />
@@ -21,7 +20,6 @@
     <link rel="stylesheet" href="../assets/css/neon-core.css">
     <link rel="stylesheet" href="../assets/css/neon-theme.css">
     <link rel="stylesheet" href="../assets/css/neon-forms.css">
-    <link rel="stylesheet" href="../assets/css/custom.css">
 
     <script src="../assets/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../assets/css/sweetalert.css">
@@ -35,6 +33,7 @@
     <script src="../assets/js/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="../assets/js/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="../assets/css/custom.css">
 
 </head>
 <body class="page-body  page-fade" data-url="http://neon.dev">

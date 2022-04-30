@@ -83,8 +83,12 @@ var neonLogin = neonLogin || {};
 								// If login is invalid, we store the 
 								if(login_status == 'invalid')
 								{
-									$(".login-page").removeClass('logging-in');
-									neonLogin.resetProgressBar(true);
+									//$(".login-page").removeClass('logging-in');
+									//alert("An error occoured!");
+									setTimeout(function()
+									{
+										window.location.href = 'login';
+									}, 500);
 								}
 								else
 								if(login_status == 'success')
@@ -93,12 +97,12 @@ var neonLogin = neonLogin || {};
 									setTimeout(function()
 									{
 										var redirect_url = baseurl;
-										
+
 										if(response.redirect_url && response.redirect_url.length)
 										{
 											redirect_url = response.redirect_url;
 										}
-										
+
 										window.location.href = redirect_url;
 									}, 400);
 								}
@@ -308,19 +312,19 @@ var neonLogin = neonLogin || {};
 					if(display_errors)
 					{
 						var $errors_container = $(".form-login-error");
-						
+
 						$errors_container.show();
 						var height = $errors_container.outerHeight();
-						
+
 						$errors_container.css({
 							height: 0
 						});
-						
+
 						TweenMax.to($errors_container, .45, {css: {height: height}, onComplete: function()
 						{
 							$errors_container.css({height: 'auto'});
 						}});
-						
+
 						// Reset password fields
 						neonLogin.$container.find('input[type="password"]').val('');
 					}
