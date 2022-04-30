@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__.'/../resources/PasswordHash.php';
+
 class Util
 {
 
@@ -143,6 +145,23 @@ class Util
 
     }
 
+    public static function fechaCastellano ($fecha) {
+        $fechaInicial = $fecha;
+        $fecha = substr($fecha, 0, 10);
+        $numeroDia = date('d', strtotime($fecha));
+        $dia = date('l', strtotime($fecha));
+        $mes = date('F', strtotime($fecha));
+        $anio = date('Y', strtotime($fecha));
+        $dias_ES = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
+        $dias_EN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+        $nombredia = str_replace($dias_EN, $dias_ES, $dia);
+        $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+        $meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+        $nombreMes = str_replace($meses_EN, $meses_ES, $mes);
+        return $nombredia. ' ' .$numeroDia. ' de ' .$nombreMes. ' de ' .$anio. ' a las '. date('g:i a',strtotime(substr($fechaInicial, 12, 19)));
+    }
+
+
     public static function dateTime1($dateTime){ # convert it to the date time format from the timestamp format
         $date = new DateTime();
         $date->setTimestamp($dateTime);
@@ -161,7 +180,13 @@ class Util
         # and %y is for showing the 4 digits of the year, eg. 2000, 2004, 1996 etc.
     }
 
-    public static function loadSession(){
+    public static function passwordCrypt($words){
+        $hasher = new PasswordHash(8, FALSE);
+        return $hasher->HashPassword($words);
+    }
 
+    public static function validatePassword($encripted, $notEncripted){
+        $hasher = new PasswordHash(8, FALSE);
+        return $hasher->CheckPassword($notEncripted, $encripted);
     }
 }

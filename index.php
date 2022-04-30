@@ -16,6 +16,10 @@ if(empty($_REQUEST['accion'])){
         $logoutController->$method();
     }elseif(method_exists($profileController, $method)){
         $profileController->$method();
+    }elseif(method_exists($permissionController, $method)){
+        $permissionController->$method();
+    }elseif(method_exists($payController, $method)){
+        $payController->$method();
     }elseif(strpos($method, '/')){
         Util::messageAlert('Ha ocurrido un error');
     }else{

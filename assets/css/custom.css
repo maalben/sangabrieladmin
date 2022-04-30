@@ -4,6 +4,35 @@
  *
 */
 
-body {
-	
+#spoilercheck1 {
+  visibility: hidden;
+}
+
+#spoilerlabel1 {
+  color: white;
+  background-color: orange;
+  font-size: 1.25em;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#spoilerlabel1:hover {
+  background-color: orangered;
+}
+
+#spoilerdiv1 {
+  background-color: lightgray;
+  padding: 2.5px;
+  height: 0;
+  font-size: 0;
+  margin-top: 10px;
+  transition: 500ms;
+  opacity: 0;
+  border-radius: 15px;
+}
+
+#spoilercheck1:checked ~ #spoilerdiv1 {
+  height: auto;
+  font-size: 1em;
+  opacity: 1;
 }

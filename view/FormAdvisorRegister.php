@@ -59,6 +59,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="txtpassword" class="col-sm-3 control-label">Password: </label>
+
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="txtpassword" name="txtpassword">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="txtcorreo" class="col-sm-3 control-label">Correo:</label>
 
                         <div class="col-sm-5">
@@ -92,10 +100,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="txtnumerocuenta" class="col-sm-3 control-label">N&uacute;mero de cuenta: </label>
+                        <label for="seltipocuenta" class="col-sm-3 control-label">Tipo de cuenta: </label>
 
                         <div class="col-sm-5">
-                            <input type="number" class="form-control" id="txtnumerocuenta" name="txtnumerocuenta">
+                            <select name="seltipocuenta" id="seltipocuenta" class="form-control" required>
+                                <option value="" selected="selected">Seleccione...</option>
+                                <option value="Cuenta de ahorros">Cuenta de ahorros</option>
+                                <option value="Bancolombia a la mano">Bancolombia a la mano</option>
+                                <option value="Cuenta corriente">Cuenta corriente</option>
+                            </select>
                         </div>
                     </div>
 
@@ -107,7 +120,13 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="txtnumerocuenta" class="col-sm-3 control-label">N&uacute;mero de cuenta: </label>
 
+                        <div class="col-sm-5">
+                            <input type="number" class="form-control" id="txtnumerocuenta" name="txtnumerocuenta">
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-5">

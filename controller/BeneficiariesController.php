@@ -1,7 +1,9 @@
 <?php
 
+require_once __DIR__.'/../resources/session.php';
 require_once __DIR__.'/../model/BeneficiariesModel.php';
 require_once __DIR__.'/../model/OwnerModel.php';
+require_once __DIR__.'/../model/Util.php';
 
 class BeneficiariesController{
 
@@ -24,7 +26,7 @@ class BeneficiariesController{
 
     public function saveBeneficiaries(){
 
-        if($this->ownerModel->getUniqueOwner($_POST['txtcedulaTitular']) === ''){
+        if($this->ownerModel->getUniqueOwner($_POST['txtcedulaTitular'], $_SESSION['rol'], $_SESSION['username']) === ''){
             ?>
             <script>
                 alert("La cédula del titular ingresada no existe. Verifique por favor.");
@@ -47,9 +49,17 @@ class BeneficiariesController{
                 $this->beneficiariesModel->actionSaveBeneficiaries($vectorData, $i);
             }
         }
-        ?><script>
-            alert("Se ha guardado el registro.");
-            location.href='index/consultBeneficiaries';
-        </script><?php
+        Util::confirmationProcess('Se ha guardado el registro.', 'index/consultBeneficiaries');
+    }
+
+    public function saveChangeBeneficiary(){
+
+        $vectorData['cedulaTitular'] = $_POST['txtcedulaTitular'];
+        $vectorData['cedula'] = $_POST['txtcedulabeneficiario'];
+        $vectorData['nombre'] = $_POST['txtnombrebeneficiario'];
+        $vectorData['fechanacimiento'] = $_POST['txtfechanacimientobeneficiario'];
+        $vectorData['selparentesco'] = $_POST['selparentesco'];
+        $this->beneficiariesModel->actionSaveChangeBeneficiary($vectorData);
+        Util::confirmationProcess('Se ha guardado el registro.', 'index/consultBeneficiaries');
     }
 }
