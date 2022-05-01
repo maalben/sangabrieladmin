@@ -27,12 +27,10 @@
             </div>
 
         </header>
-
+        <ul id="main-menu" class="main-menu">
         <?php
         if($listPermissionsEnable !== ''){
-            foreach($listPermissionsEnable as $permissions):
-                ?>
-                <ul id="main-menu" class="main-menu">
+            foreach($listPermissionsEnable as $permissions): ?>
                     <li class="active opened active has-sub">
                         <a href="#">
                             <i class="entypo-user"></i>
@@ -44,11 +42,8 @@
                             ?>
                         </ul>
                     </li>
-                </ul>
-            <?php endforeach;
-        }
-        ?>
-
+        <?php endforeach; } ?>
+        </ul>
     </div>
 
 </div>

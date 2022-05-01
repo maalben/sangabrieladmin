@@ -94,8 +94,8 @@ class PermissionsModel{
             while($records = $sql->fetch_assoc()){
                 if($records['Fin'] !== 0){ ?>
                     <li>
-                        <a href="<?php echo  $prexisUrl.$records['Fin']; ?>">
-                            <span class="title"><?php echo  $records['Nombre']; ?></span>
+                        <a href="<?php echo $prexisUrl.$records['Fin']; ?>">
+                            <span class="title"><?php echo $records['Nombre']; ?></span>
                         </a>
                     </li>
                <?php } ?>
@@ -103,6 +103,14 @@ class PermissionsModel{
               <?php
                 $this->getModuleEnableByUser($records['Id'], $id, $prexisUrl);
             }
+        }
+    }
+
+    public function validateAccessURL($urlPart, $idSessionUser){
+        $sql = $this->bd->query("SELECT COUNT(*) AS 'QuantityPage' FROM tblmodulos, tblpermisos WHERE tblmodulos.Fin='$urlPart' AND tblpermisos.Modulo=tblmodulos.Id AND tblpermisos.Usuario=$idSessionUser");
+        if($sql->num_rows > 0){
+            $records = $sql->fetch_assoc();
+            return $records['QuantityPage'];
         }
     }
 }
