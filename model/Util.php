@@ -189,4 +189,15 @@ class Util
         $hasher = new PasswordHash(8, FALSE);
         return $hasher->CheckPassword($notEncripted, $encripted);
     }
+
+    public static function moneyFormat($numero){
+        return '$'.number_format($numero,0,'.',',');
+    }
+
+    public static function getPartUrlForValidation(){
+        $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
+        $CurPageURL = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $ultimateUrl = explode('sangabrieladmin/', $CurPageURL);
+        return $ultimateUrl[1];
+    }
 }

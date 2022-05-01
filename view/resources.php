@@ -10,7 +10,12 @@ $listPermissionsEnable = $permissionsModel->generateMenuWithPermission($_SESSION
 require_once __DIR__.'/menuLateral.php' ?>
 
 <div class="main-content">
+    <?php
+    if(Util::getPartUrlForValidation() === 'index'){
+        echo "Pagina: 1";
+    }else{
+        echo "Pagina: ". $permissionsModel->validateAccessURL(Util::getPartUrlForValidation(), $_SESSION['id']);
+    }
 
-    <?php require_once __DIR__.'/superiorside.php' ?>
-
-    <div class="row">
+    require_once __DIR__.'/superiorside.php' ?>
+<div class="row">
