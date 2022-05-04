@@ -211,25 +211,23 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="txtcambioasesor" name="txtcambioasesor" placeholder="(Opcional) Escriba el c&oacute;digo
+ del asesor si desea cambiarlo">
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group no-margin">
                                         <label for="field-7" class="control-label">Beneficiarios asociados:</label>
-<!--                                        <div class="divspoiler">-->
-<!--                                            <input type="button" value="Mostrar" onclick="if (this.parentNode.nextSibling.childNodes[0].style.display != '') { this.parentNode.nextSibling.childNodes[0].style.display = ''; this.value = 'Ocultar'; } else { this.parentNode.nextSibling.childNodes[0].style.display = 'none'; this.value = 'Mostrar'; }" />-->
-<!--                                        </div><div><div class="spoiler" style="display: none;">-->
                                                 <br>
                                                 <?php
-                                                if($beneficiariesModel->toListBeneficiariesByOwner($dato['cedulaafiliado']) !== ''){
-                                                foreach($beneficiariesModel->toListBeneficiariesByOwner($dato['cedulaafiliado']) as $dataBeneficiaries):
-                                                echo $dataBeneficiaries['cedulabeneficiario'] . ' -> -> -> ' . $dataBeneficiaries['nombrecompletobeneficiario'] .'<br>';
-                                                 endforeach;
-                                                }else{
-                                                    echo 'No tiene registros';
-                                                }
+                                                $beneficiariesModel->toListBeneficiariesByOwner($dato['cedulaafiliado']);
                                                  ?>
-<!--                                            </div></div>-->
                                     </div>
                                 </div>
                             </div>

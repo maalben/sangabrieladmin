@@ -12,9 +12,10 @@ require_once __DIR__.'/menuLateral2.php' ?>
 <div class="main-content">
     <?php
     if(Util::getPartUrlForValidation() === 'index'){
-        echo "Pagina: 1";
+    }elseif($permissionsModel->validateAccessURL(Util::getPartUrlForValidation(), $_SESSION['id']) === '1'){
     }else{
-        echo "Pagina: ". $permissionsModel->validateAccessURL(Util::getPartUrlForValidation(), $_SESSION['id']);
+        echo Util::popupMessage('Logout exitoso','Hope you enjoyed it :)','success','../index/logout');
+        exit;
     }
 
     require_once __DIR__.'/superiorside2.php' ?>

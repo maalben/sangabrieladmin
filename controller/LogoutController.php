@@ -15,5 +15,6 @@ class LogoutController{
     public function logout(){
         $this->logoutModel->closeSession();
         echo Util::popupMessage('Logout exitoso','Hope you enjoyed it :)','success','../login');
+        exit;
     }
 }

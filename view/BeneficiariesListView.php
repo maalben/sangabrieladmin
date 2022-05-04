@@ -213,14 +213,10 @@ $beneficiariesModel = new BeneficiariesModel();
                                     <div class="col-md-12">
                                         <div class="form-group no-margin">
                                             <label for="field-7" class="control-label">Beneficiarios asociados:</label>
-                                            <!--                                        <div class="divspoiler">-->
-                                            <!--                                            <input type="button" value="Mostrar" onclick="if (this.parentNode.nextSibling.childNodes[0].style.display != '') { this.parentNode.nextSibling.childNodes[0].style.display = ''; this.value = 'Ocultar'; } else { this.parentNode.nextSibling.childNodes[0].style.display = 'none'; this.value = 'Mostrar'; }" />-->
-                                            <!--                                        </div><div><div class="spoiler" style="display: none;">-->
                                             <br>
-                                            <?php foreach($beneficiariesModel->toListBeneficiariesByOwner($ownerRow['cedulaafiliado']) as $dataBeneficiaries):
-                                                echo $dataBeneficiaries['cedulabeneficiario'] . ' -> -> -> ' . $dataBeneficiaries['nombrecompletobeneficiario'] .'<br>';
-                                            endforeach; ?>
-                                            <!--                                            </div></div>-->
+                                            <?php
+                                            $beneficiariesModel->toListBeneficiariesByOwner($ownerRow['cedulaafiliado']);
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +236,7 @@ $beneficiariesModel = new BeneficiariesModel();
 
 
             <td><?php echo $dato['cedulabeneficiario']; ?></td>
-            <td><?php echo utf8_decode($dato['nombrecompletobeneficiario']); ?></td>
+            <td><?php echo utf8_decode($dato['nombrebeneficiario']) . ' ' . utf8_decode($dato['apellidobeneficiario']); ?></td>
             <td align="center"><a href="javascript:;" onclick="jQuery('#modalBeneficiaries-<?php echo $Identify; ?>').modal('show', {backdrop: 'static'});"><i class="fa fa-eye"></i></a></td>
 
 
@@ -253,7 +249,7 @@ $beneficiariesModel = new BeneficiariesModel();
 
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Informaci&oacute;n del beneficiario <?php echo utf8_decode($dato['nombrecompletobeneficiario']); ?></h4>
+                                <h4 class="modal-title">Informaci&oacute;n del beneficiario <?php echo utf8_decode($dato['nombrebeneficiario']) . ' ' . utf8_decode($dato['apellidobeneficiario']); ?></h4>
                             </div>
                             <div class="modal-body">
 
@@ -271,10 +267,17 @@ $beneficiariesModel = new BeneficiariesModel();
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="txtnombrebeneficiario" class="control-label">Nombre</label>
-                                            <input type="text" class="form-control" id="txtnombrebeneficiario" name="txtnombrebeneficiario" value="<?php echo utf8_decode($dato['nombrecompletobeneficiario']); ?>">
+                                            <input type="text" class="form-control" id="txtnombrebeneficiario" name="txtnombrebeneficiario" value="<?php echo utf8_decode($dato['nombrebeneficiario']); ?>">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="txtapellidobeneficiario" class="control-label">Apellido</label>
+                                            <input type="text" class="form-control" id="txtapellidobeneficiario" name="txtapellidobeneficiario" value="<?php echo utf8_decode($dato['apellidobeneficiario']); ?>">
                                         </div>
 
                                     </div>

@@ -112,7 +112,7 @@ class Util
         */
         #  isset($_SESSION['username']) -->just to double check
         #this is to secure sesssion highjacking ie. our session is going on (when we loged in) -> so the session variables are also set, ie session[fingerprint] is set , but due to steel of the cookie now the session will be active over there also  as the person never loged out of the website,-> but now we can trac its system information , ie. this is the same pc or not
-        if ( isset($_SESSION['fingerPrint']) && ($fingerPrint != $_SESSION['fingerPrint']) && isset($_SESSION['username']) ) {
+        if ( isset($_SESSION['fingerPrint']) && ($fingerPrint !== $_SESSION['fingerPrint']) && isset($_SESSION['username']) ) {
             $isValid = false;
             self::redirectTO($url);
         }elseif(isset($_SESSION['lastActive']) && (time()-$_SESSION['lastActive'] > $inactive) && isset($_SESSION['username'])){
@@ -195,9 +195,10 @@ class Util
     }
 
     public static function getPartUrlForValidation(){
-        $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
+        $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] === 443) ? 'https://' : 'http://';
         $CurPageURL = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $ultimateUrl = explode('sangabrieladmin/', $CurPageURL);
+        //$ultimateUrl = explode('adminsangabriel/', $CurPageURL);
         return $ultimateUrl[1];
     }
 }
