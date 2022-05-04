@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__.'/../connection/Connection.php';
 require_once __DIR__.'/../resources/PasswordHash.php';
 
 class Util
@@ -197,8 +198,7 @@ class Util
     public static function getPartUrlForValidation(){
         $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] === 443) ? 'https://' : 'http://';
         $CurPageURL = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        //$ultimateUrl = explode('sangabrieladmin/', $CurPageURL);
-        $ultimateUrl = explode('adminsangabriel/', $CurPageURL);
+        $ultimateUrl = explode(Connection::getUrlByPermission(), $CurPageURL);
         return $ultimateUrl[1];
     }
 }
