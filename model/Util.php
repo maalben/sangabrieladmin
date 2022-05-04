@@ -197,8 +197,8 @@ class Util
     public static function getPartUrlForValidation(){
         $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] === 443) ? 'https://' : 'http://';
         $CurPageURL = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        $ultimateUrl = explode('sangabrieladmin/', $CurPageURL);
-        //$ultimateUrl = explode('adminsangabriel/', $CurPageURL);
+        //$ultimateUrl = explode('sangabrieladmin/', $CurPageURL);
+        $ultimateUrl = explode('adminsangabriel/', $CurPageURL);
         return $ultimateUrl[1];
     }
 }
