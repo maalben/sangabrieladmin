@@ -54,6 +54,7 @@ class OwnerController{
     }
 
     public function saveChangeOwner(){
+        $vectorDato['cambioasesor'] = $_POST["txtcambioasesor"];
         $vectorDato['cedula'] = $_POST["txtcedula"];
         $vectorDato['nombre'] = $_POST["txtnombre"];
         $vectorDato['apellido'] = $_POST["txtapellido"];

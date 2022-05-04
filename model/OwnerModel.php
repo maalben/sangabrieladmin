@@ -13,7 +13,7 @@ class OwnerModel{
 
     public function toListOwners($rol, $advisor){
         $script = "SELECT * FROM tbltitular ORDER BY id ASC";
-        if($rol !== 1){
+        if($rol !== '1'){
             $script = "SELECT * FROM tbltitular WHERE codigoasesor='$advisor' ORDER BY id ASC";
         }
         $toList = $this->bd->query($script);
@@ -47,8 +47,7 @@ class OwnerModel{
         $recordDate = $date->format('d-m-Y h:i:s');
 
         if($numberBeneficiaries === 0 || $numberBeneficiaries === null || $numberBeneficiaries === ''){  $numberBeneficiaries  = 0; }
-
-        $sql = "INSERT INTO tbltitular (cedulaafiliado, codigoasesor, nombretitular, apellidotitular, estadociviltitular, fechanacimientotitular, edadtitular, direcciontitular, barriotitular, municipiotitular, celulartitular, correotitular, mensualidadtitular, cantidadbeneficiarios, recordDate) VALUES ($identify, '$advisor', '$firstName', '$lastName', '$civilStatus', '$birthday', $age, '$address', '$town', '$city', $phone, '$email', $monthlyPayment, $numberBeneficiaries, '$recordDate')";
+        $sql = "INSERT INTO tbltitular (cedulaafiliado, codigoasesor, nombretitular, apellidotitular, estadociviltitular, fechanacimientotitular, edadtitular, direcciontitular, barriotitular, municipiotitular, celulartitular, correotitular, mensualidadtitular, cantidadbeneficiarios, recordDate) VALUES ($identify, '$advisor', '$firstName', '$lastName', '$civilStatus', '$birthday', $age, '$address', '$town', '$city', '$phone', '$email', $monthlyPayment, $numberBeneficiaries, '$recordDate')";
         mysqli_query($this->bd, $sql) or die ("Error en el guardado.");
 
         $pendingpay = "INSERT INTO tblasesorespagos (nickasesor, cedulafiliado, valor, recordDate, realizado) VALUES ('$advisor', $identify, $monthlyPayment, '$recordDate', 0)";
@@ -59,7 +58,7 @@ class OwnerModel{
     }
 
     public function actionSaveChangeOwner($data){
-
+        $newAdvisor = $data['cambioasesor'];
         $identify = $data['cedula'];
         $firstName = $data['nombre'];
         $lastName = $data['apellido'];
@@ -75,11 +74,24 @@ class OwnerModel{
 
         $age = $this->calculateAge($birthday);
 
-        if($numberBeneficiaries === 0 || $numberBeneficiaries === null || $numberBeneficiaries === ''){
-            $sql = "UPDATE tbltitular SET nombretitular='$firstName', apellidotitular='$lastName', estadociviltitular='$civilStatus', fechanacimientotitular='$birthday', edadtitular=$age, direcciontitular='$address', barriotitular='$town', municipiotitular='$city', celulartitular=$phone, correotitular='$email', mensualidadtitular=$monthlyPayment WHERE cedulaafiliado=$identify";
+        if($newAdvisor === null || $newAdvisor === ''){
+
+            if($numberBeneficiaries === 0 || $numberBeneficiaries === null || $numberBeneficiaries === ''){
+                $sql = "UPDATE tbltitular SET nombretitular='$firstName', apellidotitular='$lastName', estadociviltitular='$civilStatus', fechanacimientotitular='$birthday', edadtitular=$age, direcciontitular='$address', barriotitular='$town', municipiotitular='$city', celulartitular='$phone', correotitular='$email', mensualidadtitular=$monthlyPayment WHERE cedulaafiliado=$identify";
+            }else{
+                $sql = "UPDATE tbltitular SET nombretitular='$firstName', apellidotitular='$lastName', estadociviltitular='$civilStatus', fechanacimientotitular='$birthday', edadtitular=$age, direcciontitular='$address', barriotitular='$town', municipiotitular='$city', celulartitular='$phone', correotitular='$email', mensualidadtitular=$monthlyPayment, cantidadbeneficiarios=$numberBeneficiaries WHERE cedulaafiliado=$identify";
+            }
+
         }else{
-            $sql = "UPDATE tbltitular SET nombretitular='$firstName', apellidotitular='$lastName', estadociviltitular='$civilStatus', fechanacimientotitular='$birthday', edadtitular=$age, direcciontitular='$address', barriotitular='$town', municipiotitular='$city', celulartitular=$phone, correotitular='$email', mensualidadtitular=$monthlyPayment, cantidadbeneficiarios=$numberBeneficiaries WHERE cedulaafiliado=$identify";
+
+            if($numberBeneficiaries === 0 || $numberBeneficiaries === null || $numberBeneficiaries === ''){
+                $sql = "UPDATE tbltitular SET nombretitular='$firstName', apellidotitular='$lastName', estadociviltitular='$civilStatus', fechanacimientotitular='$birthday', edadtitular=$age, direcciontitular='$address', barriotitular='$town', municipiotitular='$city', celulartitular='$phone', correotitular='$email', mensualidadtitular=$monthlyPayment WHERE cedulaafiliado=$identify";
+            }else{
+                $sql = "UPDATE tbltitular SET nombretitular='$firstName', apellidotitular='$lastName', estadociviltitular='$civilStatus', fechanacimientotitular='$birthday', edadtitular=$age, direcciontitular='$address', barriotitular='$town', municipiotitular='$city', celulartitular='$phone', correotitular='$email', mensualidadtitular=$monthlyPayment, cantidadbeneficiarios=$numberBeneficiaries, codigoasesor='$newAdvisor' WHERE cedulaafiliado=$identify";
+            }
+
         }
+
         mysqli_query($this->bd, $sql) or die ("Error en la actualizacion.");
     }
 
@@ -100,7 +112,7 @@ class OwnerModel{
 
     public function getUniqueOwner($identify, $rol, $advisor){
         $script = "SELECT * FROM tbltitular WHERE cedulaafiliado=$identify";
-        if($rol !== 1){
+        if($rol !== '1'){
             $script = "SELECT * FROM tbltitular WHERE cedulaafiliado=$identify AND codigoasesor='$advisor'";
         }
         $getDataOwner = $this->bd->query($script);

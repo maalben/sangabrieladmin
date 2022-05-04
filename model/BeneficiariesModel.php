@@ -26,12 +26,13 @@ class BeneficiariesModel{
     public function actionSaveBeneficiaries($data, $position){
         $ownerIdentify = $data['cedulaTitular'];
         $identify = $data['cedula'.$position];
-        $name = $data['nombre'.$position] . ' ' . $data['apellido'.$position];
+        $name = $data['nombre'.$position];
+        $lastName = $data['apellido'.$position];
         $birthday = $data['fechanacimiento'.$position];
         $relationship = $data['selparentesco'.$position];
         $age = Util::calculateAge($birthday);
         $recordDate = Util::getDateRecord();
-        $sql = "INSERT INTO tblbeneficiarios (cedulatitular, cedulabeneficiario, nombrecompletobeneficiario, fechanacimientobeneficiario, edadbeneficiario, parentescobeneficiario, recordDate) VALUES ($ownerIdentify, $identify, '$name', '$birthday', $age, '$relationship', '$recordDate')";
+        $sql = "INSERT INTO tblbeneficiarios (cedulatitular, cedulabeneficiario, nombrebeneficiario, fechanacimientobeneficiario, edadbeneficiario, parentescobeneficiario, recordDate, apellidobeneficiario) VALUES ($ownerIdentify, $identify, '$name', '$birthday', $age, '$relationship', '$recordDate', '$lastName')";
         mysqli_query($this->bd, $sql) or die ('Error en el guardado.');
     }
 
@@ -39,10 +40,11 @@ class BeneficiariesModel{
         $ownerIdentify = $data['cedulaTitular'];
         $identify = $data['cedula'];
         $name = $data['nombre'];
+        $lastName = $data['apellido'];
         $birthday = $data['fechanacimiento'];
         $relationship = $data['selparentesco'];
         $age = Util::calculateAge($birthday);
-        $sql = "UPDATE tblbeneficiarios SET nombrecompletobeneficiario='$name', fechanacimientobeneficiario='$birthday', edadbeneficiario=$age, parentescobeneficiario='$relationship' WHERE cedulatitular=$ownerIdentify AND cedulabeneficiario=$identify";
+        $sql = "UPDATE tblbeneficiarios SET nombrebeneficiario='$name', apellidobeneficiario='$lastName', fechanacimientobeneficiario='$birthday', edadbeneficiario=$age, parentescobeneficiario='$relationship' WHERE cedulatitular=$ownerIdentify AND cedulabeneficiario=$identify";
         mysqli_query($this->bd, $sql) or die ('Error en el guardado.');
     }
 
@@ -58,13 +60,13 @@ class BeneficiariesModel{
     }
 
     public function toListBeneficiariesByOwner($identify){
-        $toList = $this->bd->query("SELECT * FROM tblbeneficiarios WHERE cedulatitular=$identify");
+        $toList = $this->bd->query("SELECT DISTINCT cedulabeneficiario, nombrebeneficiario, apellidobeneficiario FROM tblbeneficiarios WHERE cedulatitular=$identify GROUP BY cedulabeneficiario, nombrebeneficiario, apellidobeneficiario");
         if($toList->num_rows > 0){
             while($records = $toList->fetch_assoc()){
-                $this->BeneficiariesList[] = $records;
+                echo $records['cedulabeneficiario'] . ' -> -> -> ' . $records['nombrebeneficiario'] . ' ' . $records['apellidobeneficiario'] .'<br>';
             }
-            return $this->BeneficiariesList;
+        }else{
+            echo 'No tiene registros';
         }
-        return '';
     }
 }

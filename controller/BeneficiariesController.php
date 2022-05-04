@@ -57,6 +57,7 @@ class BeneficiariesController{
         $vectorData['cedulaTitular'] = $_POST['txtcedulaTitular'];
         $vectorData['cedula'] = $_POST['txtcedulabeneficiario'];
         $vectorData['nombre'] = $_POST['txtnombrebeneficiario'];
+        $vectorData['apellido'] = $_POST['txtapellidobeneficiario'];
         $vectorData['fechanacimiento'] = $_POST['txtfechanacimientobeneficiario'];
         $vectorData['selparentesco'] = $_POST['selparentesco'];
         $this->beneficiariesModel->actionSaveChangeBeneficiary($vectorData);
