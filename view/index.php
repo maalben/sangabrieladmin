@@ -10,7 +10,7 @@
     <div class="col-sm-3 col-xs-6">
 
         <div class="tile-stats tile-red">
-            <div class="icon"><i class="entypo-users"></i></div>
+            <div class="icon"><i class="entypo-star"></i></div>
             <div class="num" data-start="0" data-end="<?= $advisorsQuantity ?>" data-postfix="" data-duration="1500" data-delay="0">0</div>
             <h3>Asesores</h3>
         </div>

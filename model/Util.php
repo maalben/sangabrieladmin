@@ -201,4 +201,12 @@ class Util
         $ultimateUrl = explode(Connection::getUrlByPermission(), $CurPageURL);
         return $ultimateUrl[1];
     }
+
+    public static function dateTransformer($data){
+        if($data !== ''){
+            list($ano,$mes,$dia) = explode('-',$data);
+            return $dia.'-'.$mes.'-'.$ano;
+        }
+        return '';
+    }
 }

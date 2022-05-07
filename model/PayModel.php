@@ -55,10 +55,42 @@ class PayModel{
         return '';
     }
 
+    public function toListPaysAccomplishedWithDateRange($rol, $advisor, $data){
+        $initialDate = Util::dateTransformer($data['InitialDate']).' 00:00:00';
+        $finalDate = Util::dateTransformer($data['FinalDate']).' 23:59:59';
+        $script = "SELECT * FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$finalDate' AND realizado=1 ORDER BY id ASC";
+        if($rol !== '1'){
+            $script = "SELECT * FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$$finalDate' AND nickasesor='$advisor' AND realizado=1 ORDER BY id ASC";
+        }
+        $toList = $this->bd->query($script);
+        if($toList->num_rows > 0){
+            while($records = $toList->fetch_assoc()){
+                $this->PayList[] = $records;
+            }
+            return $this->PayList;
+        }
+        return '';
+    }
+
     public function totalAccomplishedPay($rol, $advisor){
         $script = "SELECT SUM(valor) AS 'Total' FROM tblasesorespagos WHERE realizado=1 ORDER BY id ASC";
         if($rol !== '1'){
             $script = "SELECT SUM(valor) AS 'Total' FROM tblasesorespagos WHERE nickasesor='$advisor' AND realizado=1 ORDER BY id ASC";
+        }
+        $toList = $this->bd->query($script);
+        if($toList->num_rows > 0){
+            $records = $toList->fetch_assoc();
+            return $records['Total'];
+        }
+        return '';
+    }
+
+    public function totalAccomplishedPayWithDateRange($rol, $advisor, $data){
+        $initialDate = Util::dateTransformer($data['InitialDate']).' 00:00:00';
+        $finalDate = Util::dateTransformer($data['FinalDate']).' 23:59:59';
+        $script = "SELECT SUM(valor) AS 'Total' FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$$finalDate' AND realizado=1 ORDER BY id ASC";
+        if($rol !== '1'){
+            $script = "SELECT SUM(valor) AS 'Total' FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$$finalDate' AND nickasesor='$advisor' AND realizado=1 ORDER BY id ASC";
         }
         $toList = $this->bd->query($script);
         if($toList->num_rows > 0){

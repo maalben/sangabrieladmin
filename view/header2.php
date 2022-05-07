@@ -34,7 +34,32 @@
     <script src="../assets/js/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="stylesheet" href="../assets/css/custom.css">
-
+    <script>
+        function proceso(txtfechainicial, txtfechafinal, boton){
+            switch(boton){
+                case "Filtrar":
+                    var parametros = {
+                        "txtfechainicial" : txtfechainicial,
+                        "txtfechafinal" : txtfechafinal,
+                        "btnbutton" : boton
+                    }
+                    break;
+            }
+            $.ajax({
+                data: parametros,
+                url: '../index.php?accion=payFilters',
+                type:'post',
+                beforeSend:
+                    function(){
+                        $('#filtro').html('Cargando...');
+                    },
+                success:
+                    function(response){
+                        $('#filtro').html(response);
+                    }
+            });
+        }
+    </script>
 </head>
 <body class="page-body  page-fade" data-url="http://neon.dev">
 
