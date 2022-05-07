@@ -92,8 +92,7 @@ $ownerModel = new OwnerModel();
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="btnbutton" class="control-label">&nbsp;</label>
-                        <button type="button" name="btnbutton" id="btnbutton" value="Filtrar" class="btn btn-default
-                        form-control" onclick="proceso( $('#txtfechainicial').val(), $('#txtfechafinal').val(), $('#btnbutton').val() );">Guardar</button>
+                        <button type="button" name="btnbutton" id="btnbutton" value="Filtrar" class="btn btn-default form-control" onclick="proceso( $('#txtfechainicial').val(), $('#txtfechafinal').val(), $('#btnbutton').val() );">Filtrar</button>
                     </div>
                 </div>
             </div>

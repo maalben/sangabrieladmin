@@ -105,4 +105,16 @@ class PayModel{
         $pendingPay = "UPDATE tblasesorespagos SET realizado=1 WHERE id=$idPay";
         mysqli_query($this->bd, $pendingPay) or die ("Error en el guardado.");
     }
+
+    public function blockDetailsOwner($rol, $advisor, $ownerIdentify){
+        $script = "SELECT * FROM tblasesorespagos WHERE cedulafiliado = $ownerIdentify";
+        if($rol !== '1'){
+            $script = "SELECT * FROM tblasesorespagos WHERE cedulafiliado = $ownerIdentify AND nickasesor = '$advisor'";
+        }
+        $toList = $this->bd->query($script);
+        if($toList->num_rows > 0){
+            return 1;
+        }
+        return 0;
+    }
 }

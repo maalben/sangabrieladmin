@@ -124,8 +124,12 @@ class OwnerModel{
         return '';
     }
 
-    public function getQuantityOwner(){
-        $getDataOwner = $this->bd->query("SELECT COUNT(*) as totalOwner FROM tbltitular");
+    public function getQuantityOwner($rol, $advisor){
+        $script="SELECT COUNT(*) as totalOwner FROM tbltitular";
+        if($rol !== '1'){
+            $script = "SELECT COUNT(*) as totalOwner FROM tbltitular WHERE codigoasesor='$advisor'";
+        }
+        $getDataOwner = $this->bd->query($script);
         $data = $getDataOwner->fetch_assoc();
         return $data['totalOwner'];
     }

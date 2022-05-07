@@ -51,7 +51,10 @@
             <td><?php echo $dato['cedulaafiliado']; ?></td>
             <td><?php echo utf8_decode($dato['nombretitular']); ?></td>
             <td><?php echo utf8_decode($dato['apellidotitular']); ?></td>
-            <td align="center"><a href="javascript:;" onclick="jQuery('#modal-<?php echo $dato["id"]; ?>').modal('show', {backdrop: 'static'});"><i class="fa fa-eye"></i></a></td>
+            <td align="center">
+                <?php if($this->payModel->blockDetailsOwner($_SESSION['rol'], $_SESSION['username'], $dato['cedulaafiliado']) === 1){ ?>
+                <a href="javascript:;" onclick="jQuery('#modal-<?php echo $dato["id"]; ?>').modal('show', {backdrop: 'static'});"><i class="fa fa-eye"></i></a></td>
+            <?php } ?>
             <!-- Modal 6 -->
             <div class="modal fade" id="modal-<?php echo $dato['id']; ?>">
                 <div class="modal-dialog">

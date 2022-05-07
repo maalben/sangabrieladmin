@@ -39,16 +39,25 @@
 
     </div>
 
-    <!--<div class="col-sm-3 col-xs-6">
-
-      --<div class="tile-stats tile-blue">
+    <div class="col-sm-3 col-xs-6">
+        <div class="tile-stats tile-gray">
             <div class="icon"><i class="entypo-rss"></i></div>
-            <div class="num" data-start="0" data-end="52" data-postfix="" data-duration="1500" data-delay="1800">0</div>
-
-            <h3>Subscribers</h3>
-            <p>on our site right now.</p>
+            <div class="num" data-start="0" data-end="<?= $pendingPay; ?>" data-end="52" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+            <h3>Pagos pendientes</h3>
         </div>
-			</div>-->
+    </div>
+
+    <div class="col-sm-3 col-xs-6">
+        <div class="tile-stats tile-blue">
+            <div class="icon"><i class="entypo-rss"></i></div>
+            <div class="num" data-start="0" data-end="<?= $accomplishedPay; ?>" data-end="52" data-postfix="" data-duration="1500" data-delay="1200">0</div>
+            <h3>Pagos completados</h3>
+        </div>
+    </div>
+
+
+
+
     <div class="col-lg-12 col-xs-12">
         <br>
         <br>

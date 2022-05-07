@@ -3,16 +3,19 @@
 require_once __DIR__.'/../resources/session.php';
 require_once __DIR__.'/../model/OwnerModel.php';
 require_once __DIR__.'/../model/BeneficiariesModel.php';
+require_once __DIR__.'/../model/PayModel.php';
 require_once __DIR__.'/../model/Util.php';
 
 class OwnerController{
 
     private $ownerModel;
     private $beneficiariesModel;
+    private $payModel;
 
     public function __construct(){
         $this->beneficiariesModel = new BeneficiariesModel();
         $this->ownerModel = new OwnerModel();
+        $this->payModel = new PayModel();
     }
 
     public function consultOwner(){
