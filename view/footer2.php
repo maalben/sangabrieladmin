@@ -11,7 +11,6 @@
 
 
 </div>
-
 <script src="../assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
 <link rel="stylesheet" href="../assets/js/datatables/datatables.css">
 <script src="../assets/js/datatables/datatables.js"></script>

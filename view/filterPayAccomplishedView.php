@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__.'/resources2.php';
 require_once __DIR__ . '/../model/AdvisorModel.php';
 require_once __DIR__ . '/../model/OwnerModel.php';
 $advisorModel = new AdvisorModel();
@@ -67,45 +66,3 @@ $ownerModel = new OwnerModel();
         </tfoot>
     </table>
     <p><h2>Total pagos completados: <?php echo Util::moneyFormat($totalPay); ?></h2></p>
-
-    <br>
-    <p><h2>Filtra los pagos completados</h2></p>
-
-    <div class="panel-body">
-
-        <form role="form" method="post" class="form-horizontal form-groups-bordered validate" action="../index.php?accion=saveOwner">
-
-            <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="txtfechainicial" class="control-label">Pagos desde:</label>
-                            <input type="text" class="form-control datepicker" id="txtfechainicial" name="txtfechainicial" data-format="yyyy-mm-dd">
-                        </div>
-
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="txtfechafinal" class="control-label">Pagos hasta:</label>
-                            <input type="text" class="form-control datepicker" id="txtfechafinal" name="txtfechafinal" data-format="yyyy-mm-dd">
-                        </div>
-                    </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="btnbutton" class="control-label">&nbsp;</label>
-                        <button type="button" name="btnbutton" id="btnbutton" value="Filtrar" class="btn btn-default
-                        form-control" onclick="proceso( $('#txtfechainicial').val(), $('#txtfechafinal').val(), $('#btnbutton').val() );">Guardar</button>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-            <span id="filtro"></span>
-
-
-
-        </form>
-
-    </div>
-
-
-<?php require_once 'footer2.php' ?>

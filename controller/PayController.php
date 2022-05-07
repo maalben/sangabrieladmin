@@ -29,4 +29,12 @@ class PayController{
         $this->payModel->actionSaveOwners($vectorDataUser);
         Util::confirmationProcess('Se ha actualizado el pago.', 'index/consultPaysPending');
     }
+
+    public function payFilters(){
+        $vectorData['InitialDate'] = $_POST['txtfechainicial'];
+        $vectorData['FinalDate'] = $_POST['txtfechafinal'];
+        $consulta = $this->payModel->toListPaysAccomplishedWithDateRange($_SESSION['rol'], $_SESSION['username'], $vectorData);
+        $totalPay = $this->payModel->totalAccomplishedPayWithDateRange($_SESSION['rol'], $_SESSION['username'], $vectorData);
+        require_once __DIR__ . '/../view/filterPayAccomplishedView.php';
+    }
 }
