@@ -78,8 +78,13 @@ class AdvisorModel{
         mysqli_query($this->bd, $sqlAdvisor) or die ('Error en la actualización.');
     }
 
-    public function getQuantityAdvisors(){
-        $toList = $this->bd->query("SELECT * FROM tblasesores");
+    public function getQuantityAdvisors($rol, $advisor){
+
+        $script = "SELECT * FROM tblasesores WHERE codigoasesor<>'admin'";
+        if($rol !== '1'){
+            $script = "SELECT * FROM tblasesores WHERE codigoasesor='$advisor'";
+        }
+        $toList = $this->bd->query($script);
         return $toList->num_rows;
     }
 
