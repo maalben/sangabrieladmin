@@ -45,7 +45,7 @@ $ownerModel = new OwnerModel();
         foreach($consulta as $dato): ?>
         <tr class="odd gradeX">
             <td align="center"><?php echo $ownerModel->getInformationOwner($dato['cedulafiliado'])['nombretitular'] . ' ' . $ownerModel->getInformationOwner($dato['cedulafiliado'])['apellidotitular'] . ' - ('.$dato['cedulafiliado'].')'; ?></td>
-            <td align="center"><?php echo $dato['valor']; ?></td>
+            <td align="center"><?php echo Util::moneyFormat($dato['valor']); ?></td>
             <td align="center"><?php echo $dato['recordDate']; ?></td>
             <?php if($_SESSION['rol'] === '1'){ ?>
                 <td align="center"><?php echo $advisorModel->getNameAdvisor($dato['nickasesor']); ?></td>
@@ -81,7 +81,7 @@ $ownerModel = new OwnerModel();
 
     <div class="panel-body">
 
-        <form role="form" method="post" class="form-horizontal form-groups-bordered validate" action="../index.php?accion=saveOwner">
+        <form role="form" method="post" class="form-horizontal form-groups-bordered validate">
 
             <div class="row">
                     <div class="col-md-2">
