@@ -85,14 +85,17 @@ class OwnerModel{
         }else{
 
             if($numberBeneficiaries === 0 || $numberBeneficiaries === null || $numberBeneficiaries === ''){
-                $sql = "UPDATE tbltitular SET nombretitular='$firstName', apellidotitular='$lastName', estadociviltitular='$civilStatus', fechanacimientotitular='$birthday', edadtitular=$age, direcciontitular='$address', barriotitular='$town', municipiotitular='$city', celulartitular='$phone', correotitular='$email', mensualidadtitular=$monthlyPayment WHERE cedulaafiliado=$identify";
+                $sql = "UPDATE tbltitular SET nombretitular='$firstName', apellidotitular='$lastName', estadociviltitular='$civilStatus', fechanacimientotitular='$birthday', edadtitular=$age, direcciontitular='$address', barriotitular='$town', municipiotitular='$city', celulartitular='$phone', correotitular='$email', mensualidadtitular=$monthlyPayment, codigoasesor='$newAdvisor' WHERE cedulaafiliado=$identify";
             }else{
                 $sql = "UPDATE tbltitular SET nombretitular='$firstName', apellidotitular='$lastName', estadociviltitular='$civilStatus', fechanacimientotitular='$birthday', edadtitular=$age, direcciontitular='$address', barriotitular='$town', municipiotitular='$city', celulartitular='$phone', correotitular='$email', mensualidadtitular=$monthlyPayment, cantidadbeneficiarios=$numberBeneficiaries, codigoasesor='$newAdvisor' WHERE cedulaafiliado=$identify";
             }
 
+            $sqlChangeAdvisorPay = "UPDATE tblasesorespagos SET nickasesor='$newAdvisor' WHERE cedulafiliado=$identify";
+            mysqli_query($this->bd, $sqlChangeAdvisorPay) or die ('Error en la actualizacion.');
+
         }
 
-        mysqli_query($this->bd, $sql) or die ("Error en la actualizacion.");
+        mysqli_query($this->bd, $sql) or die ('Error en la actualizacion.');
     }
 
     function calculateAge($birthday){

@@ -46,6 +46,19 @@ class AdvisorModel{
 
         mysqli_query($this->bd, $sql) or die ('Error en el guardado.');
         mysqli_query($this->bd, $sqlAdvisor) or die ('Error en el guardado.');
+
+        $lastId = self::getLastAdvisorId($code);
+        $sqlAdvisorPermission = "INSERT INTO tblpermisos (Modulo, Usuario, Padre) VALUES (5, $lastId, 1), (6, $lastId, 1), (7, $lastId, 2), (8, $lastId, 2), (11, $lastId, 4), (12, $lastId, 4), (13, $lastId, 4)";
+        mysqli_query($this->bd, $sqlAdvisorPermission) or die ('Error en el guardado.');
+    }
+
+    private function getLastAdvisorId($nick){
+        $record = $this->bd->query("SELECT id FROM tblusuarios WHERE nick='$nick'");
+        if($record->num_rows > 0){
+            $data = $record->fetch_assoc();
+            return $data['id'];
+        }
+        return '';
     }
 
     public function actionSaveChangesAdvisor($data){

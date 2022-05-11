@@ -3,6 +3,7 @@
 require_once __DIR__.'/../resources/session.php';
 require_once __DIR__.'/../model/BeneficiariesModel.php';
 require_once __DIR__.'/../model/OwnerModel.php';
+require_once __DIR__.'/../model/PayModel.php';
 require_once __DIR__.'/../model/Util.php';
 
 class BeneficiariesController{
@@ -13,10 +14,11 @@ class BeneficiariesController{
     public function __construct(){
         $this->beneficiariesModel = new BeneficiariesModel();
         $this->ownerModel = new OwnerModel();
+        $this->payModel = new PayModel();
     }
 
     public function consultBeneficiaries(){
-        $consulta = $this->beneficiariesModel->toListBeneficiaries();
+        $consulta = $this->beneficiariesModel->toListBeneficiaries($_SESSION['rol'], $_SESSION['username']);
         require_once __DIR__ . '/../view/BeneficiariesListView.php';
     }
 

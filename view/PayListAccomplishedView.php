@@ -36,6 +36,7 @@ $ownerModel = new OwnerModel();
             <?php if($_SESSION['rol'] === '1'){ ?>
                 <th align="center">Asesor</th>
             <?php } ?>
+            <th align="center">Fecha de pago</th>
         </tr>
         </thead>
         <tbody>
@@ -49,6 +50,7 @@ $ownerModel = new OwnerModel();
             <?php if($_SESSION['rol'] === '1'){ ?>
                 <td align="center"><?php echo $advisorModel->getNameAdvisor($dato['nickasesor']); ?></td>
             <?php } ?>
+            <td align="center"><?php echo $dato['payDate']; ?></td>
         </tr>
         <?php endforeach;
         }
@@ -63,9 +65,15 @@ $ownerModel = new OwnerModel();
             <?php if($_SESSION['rol'] === '1'){ ?>
                 <th align="center">Asesor</th>
             <?php } ?>
+            <th align="center">Fecha de pago</th>
         </tr>
         </tfoot>
     </table>
+
+    <hr>
+    <hr>
+    <hr>
+
     <p><h2>Total pagos completados: <?php echo Util::moneyFormat($totalPay); ?></h2></p>
 
     <br>
@@ -79,14 +87,14 @@ $ownerModel = new OwnerModel();
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="txtfechainicial" class="control-label">Pagos desde:</label>
-                            <input type="text" class="form-control datepicker" id="txtfechainicial" name="txtfechainicial" data-format="yyyy-mm-dd">
+                            <input type="text" class="form-control datepicker" id="txtfechainicial" name="txtfechainicial" data-format="dd-mm-yyyy" required>
                         </div>
 
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="txtfechafinal" class="control-label">Pagos hasta:</label>
-                            <input type="text" class="form-control datepicker" id="txtfechafinal" name="txtfechafinal" data-format="yyyy-mm-dd">
+                            <input type="text" class="form-control datepicker" id="txtfechafinal" name="txtfechafinal" data-format="dd-mm-yyyy" required>
                         </div>
                     </div>
                 <div class="col-md-2">

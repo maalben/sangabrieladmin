@@ -12,8 +12,12 @@ class BeneficiariesModel{
         $this->BeneficiariesList = array();
     }
 
-    public function toListBeneficiaries(){
-        $toList = $this->bd->query("SELECT * FROM tblbeneficiarios");
+    public function toListBeneficiaries($rol, $advisor){
+        $script="SELECT * FROM tblbeneficiarios";
+        if($rol !== '1'){
+            $script = "SELECT * FROM tblbeneficiarios b INNER JOIN tbltitular t ON b.cedulatitular = t.cedulaafiliado WHERE t.codigoasesor = '$advisor'";
+        }
+        $toList = $this->bd->query($script);
         if($toList->num_rows > 0){
             while($records = $toList->fetch_assoc()){
                 $this->BeneficiariesList[] = $records;
@@ -53,8 +57,12 @@ class BeneficiariesModel{
         return $toList->num_rows;
     }
 
-    public function getTotalQuantityBeneficiaries(){
-        $query = $this->bd->query('SELECT COUNT(*) as totalBeneficiaries FROM tblbeneficiarios');
+    public function getTotalQuantityBeneficiaries($rol, $advisor){
+        $script="SELECT COUNT(*) as totalBeneficiaries FROM tblbeneficiarios";
+        if($rol !== '1'){
+            $script = "SELECT COUNT(*) as totalBeneficiaries FROM tblbeneficiarios b INNER JOIN tbltitular t ON b.cedulatitular = t.cedulaafiliado WHERE t.codigoasesor = '$advisor'";
+        }
+        $query = $this->bd->query($script);
         $totalBeneficiaries = $query->fetch_assoc();
         return $totalBeneficiaries['totalBeneficiaries'];
     }

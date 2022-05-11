@@ -47,7 +47,15 @@ $ownerModel = new OwnerModel();
             <td align="center"><?php echo $dato['valor']; ?></td>
             <td align="center"><?php echo $dato['recordDate']; ?></td>
             <?php if($_SESSION['rol'] === '1'){ ?>
-                <td align="center"><?php echo $advisorModel->getNameAdvisor($dato['nickasesor']); ?></td>
+                <td align="center">
+                    <?php
+                    if($advisorModel->getNameAdvisor($dato['nickasesor']) ===  ''){
+                        echo 'Sin especificar';
+                    }else{
+                        echo $advisorModel->getNameAdvisor($dato['nickasesor']);
+                    }
+                    ?>
+                </td>
                 <td align="center"><a href="../index.php?accion=payOwner&id=<?php echo $dato['id']; ?>"><i class="fa fa-rocket"></i></a></td>
             <?php } ?>
         </tr>

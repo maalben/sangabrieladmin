@@ -56,8 +56,8 @@ class PayModel{
     }
 
     public function toListPaysAccomplishedWithDateRange($rol, $advisor, $data){
-        $initialDate = Util::dateTransformer($data['InitialDate']).' 00:00:00';
-        $finalDate = Util::dateTransformer($data['FinalDate']).' 23:59:59';
+        $initialDate = $data['InitialDate'].' 00:00:00';
+        $finalDate = $data['FinalDate'].' 23:59:59';
         $script = "SELECT * FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$finalDate' AND realizado=1 ORDER BY id ASC";
         if($rol !== '1'){
             $script = "SELECT * FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$$finalDate' AND nickasesor='$advisor' AND realizado=1 ORDER BY id ASC";
@@ -86,11 +86,11 @@ class PayModel{
     }
 
     public function totalAccomplishedPayWithDateRange($rol, $advisor, $data){
-        $initialDate = Util::dateTransformer($data['InitialDate']).' 00:00:00';
-        $finalDate = Util::dateTransformer($data['FinalDate']).' 23:59:59';
-        $script = "SELECT SUM(valor) AS 'Total' FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$$finalDate' AND realizado=1 ORDER BY id ASC";
+        $initialDate = $data['InitialDate'].' 00:00:00';
+        $finalDate = $data['FinalDate'].' 23:59:59';
+        $script = "SELECT SUM(valor) AS 'Total' FROM tblasesorespagos WHERE payDate BETWEEN '$initialDate' AND '$finalDate' AND realizado=1 ORDER BY id ASC";
         if($rol !== '1'){
-            $script = "SELECT SUM(valor) AS 'Total' FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$$finalDate' AND nickasesor='$advisor' AND realizado=1 ORDER BY id ASC";
+            $script = "SELECT SUM(valor) AS 'Total' FROM tblasesorespagos WHERE payDate BETWEEN '$initialDate' AND '$finalDate' AND nickasesor='$advisor' AND realizado=1 ORDER BY id ASC";
         }
         $toList = $this->bd->query($script);
         if($toList->num_rows > 0){
@@ -102,19 +102,31 @@ class PayModel{
 
     public function actionSaveOwners($data){
         $idPay = $data['idPay'];
-        $pendingPay = "UPDATE tblasesorespagos SET realizado=1 WHERE id=$idPay";
-        mysqli_query($this->bd, $pendingPay) or die ("Error en el guardado.");
+        $payDate = $recordDate = Util::getDateRecord();
+        $pendingPay = "UPDATE tblasesorespagos SET realizado=1, payDate='$payDate' WHERE id=$idPay";
+        mysqli_query($this->bd, $pendingPay) or die ("Error en la actualizacion.");
     }
 
     public function blockDetailsOwner($rol, $advisor, $ownerIdentify){
-        $script = "SELECT * FROM tblasesorespagos WHERE cedulafiliado = $ownerIdentify";
+        $script = "SELECT * FROM tblasesorespagos";
         if($rol !== '1'){
-            $script = "SELECT * FROM tblasesorespagos WHERE cedulafiliado = $ownerIdentify AND nickasesor = '$advisor'";
+            if(self::getValueOwnerPayed($advisor, $ownerIdentify) === 1){
+                $script = "SELECT * FROM tblasesorespagos WHERE cedulafiliado = $ownerIdentify AND nickasesor = '$advisor' AND realizado = 1";
+            }else{
+                $script = "SELECT * FROM tblasesorespagos WHERE cedulafiliado = $ownerIdentify AND nickasesor = '$advisor' AND realizado = 0";
+            }
         }
         $toList = $this->bd->query($script);
         if($toList->num_rows > 0){
             return 1;
         }
         return 0;
+    }
+
+    private function getValueOwnerPayed($advisor, $ownerIdentify){
+        $script = "SELECT realizado FROM tblasesorespagos WHERE cedulafiliado = $ownerIdentify AND nickasesor = '$advisor'";
+        $value = $this->bd->query($script);
+        $record = $value->fetch_assoc();
+        return $record['realizado'];
     }
 }
