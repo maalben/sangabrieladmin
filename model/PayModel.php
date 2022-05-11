@@ -60,7 +60,7 @@ class PayModel{
         $finalDate = $data['FinalDate'].' 23:59:59';
         $script = "SELECT * FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$finalDate' AND realizado=1 ORDER BY id ASC";
         if($rol !== '1'){
-            $script = "SELECT * FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$$finalDate' AND nickasesor='$advisor' AND realizado=1 ORDER BY id ASC";
+            $script = "SELECT * FROM tblasesorespagos WHERE recordDate BETWEEN '$initialDate' AND '$finalDate' AND nickasesor='$advisor' AND realizado=1 ORDER BY id ASC";
         }
         $toList = $this->bd->query($script);
         if($toList->num_rows > 0){
@@ -102,7 +102,7 @@ class PayModel{
 
     public function actionSaveOwners($data){
         $idPay = $data['idPay'];
-        $payDate = $recordDate = Util::getDateRecord();
+        $payDate = Util::getDateRecord();
         $pendingPay = "UPDATE tblasesorespagos SET realizado=1, payDate='$payDate' WHERE id=$idPay";
         mysqli_query($this->bd, $pendingPay) or die ("Error en la actualizacion.");
     }

@@ -35,6 +35,7 @@ $ownerModel = new OwnerModel();
             <?php if($_SESSION['rol'] === '1'){ ?>
                 <th align="center">Asesor</th>
             <?php } ?>
+            <th align="center">Fecha de pago</th>
         </tr>
         </thead>
         <tbody>
@@ -43,11 +44,12 @@ $ownerModel = new OwnerModel();
         foreach($consulta as $dato): ?>
         <tr class="odd gradeX">
             <td align="center"><?php echo $ownerModel->getInformationOwner($dato['cedulafiliado'])['nombretitular'] . ' ' . $ownerModel->getInformationOwner($dato['cedulafiliado'])['apellidotitular'] . ' - ('.$dato['cedulafiliado'].')'; ?></td>
-            <td align="center"><?php echo $dato['valor']; ?></td>
+            <td align="center"><?php echo Util::moneyFormat($dato['valor']); ?></td>
             <td align="center"><?php echo $dato['recordDate']; ?></td>
             <?php if($_SESSION['rol'] === '1'){ ?>
                 <td align="center"><?php echo $advisorModel->getNameAdvisor($dato['nickasesor']); ?></td>
             <?php } ?>
+            <td align="center"><?php echo $dato['payDate']; ?></td>
         </tr>
         <?php endforeach;
         }
@@ -62,6 +64,7 @@ $ownerModel = new OwnerModel();
             <?php if($_SESSION['rol'] === '1'){ ?>
                 <th align="center">Asesor</th>
             <?php } ?>
+            <th align="center">Fecha de pago</th>
         </tr>
         </tfoot>
     </table>
