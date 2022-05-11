@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="../assets/css/custom.css">
     <script>
         function proceso(txtfechainicial, txtfechafinal, boton){
+
             switch(boton){
                 case "Filtrar":
                     var parametros = {
@@ -58,6 +59,71 @@
                         $('#filtro').html(response);
                     }
             });
+        }
+    </script>
+
+    <script>
+        function allowOnlyAlphabets(event) {
+            const charCode = event.keyCode;
+
+            let mensualidad = 11200;
+
+            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123)) {
+                return false;
+            } else {
+                const cont = document.getElementById("txtcantidadbeneficiarios").value;
+                if(cont > 0){
+                    switch (cont) {
+                        case '1':
+                            mensualidad = 11200;
+                            break;
+                        case '2':
+                            mensualidad = 11200;
+                            break;
+                        case '3':
+                            mensualidad = 11200;
+                            break;
+                        case '4':
+                            mensualidad = 14000;
+                            break;
+                        case '5':
+                            mensualidad = 16800;
+                            break;
+                        case '6':
+                            mensualidad = 19600;
+                            break;
+                        case '7':
+                            mensualidad = 22400;
+                            break;
+                        case '8':
+                            mensualidad = 25200;
+                            break;
+                        case '9':
+                            mensualidad = 28300;
+                            break;
+                        case '10':
+                            mensualidad = 31400;
+                            break;
+                        case '11':
+                            mensualidad = 34500;
+                            break;
+                        case '12':
+                            mensualidad = 37600;
+                            break;
+                        case '13':
+                            mensualidad = 40700;
+                            break;
+                        default:
+                            mensualidad  = 0;
+                    }
+                    document.getElementById("mensualidad").innerHTML = "<h4><b>"+mensualidad+"</b></h4>";
+                    document.getElementById("txtmensualidad").setAttribute('value',mensualidad);
+                }else{
+                    document.getElementById("mensualidad").innerHTML = "<h4><b>11200</b></h4>";
+                    document.getElementById("txtmensualidad").setAttribute('value',11200);
+                }
+                return true;
+            }
         }
     </script>
 </head>

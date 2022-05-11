@@ -136,14 +136,15 @@
                     <div class="form-group">
                         <label for="txtcantidadbeneficiarios" class="col-sm-3 control-label">Cantidad de beneficiarios</label>
                         <div class="col-sm-5">
-                        <input type="text" class="form-control" id="txtcantidadbeneficiarios" name="txtcantidadbeneficiarios" data-validate="number" placeholder="Campo num&eacute;rico" />
+                        <input type="text" class="form-control" id="txtcantidadbeneficiarios" name="txtcantidadbeneficiarios" data-validate="number" placeholder="Campo num&eacute;rico" onkeyup="return allowOnlyAlphabets(event);" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="txtmensualidad" class="col-sm-3 control-label">Mensualidad: </label>
                         <div class="col-sm-5">
-                        <input type="text" class="form-control" id="txtmensualidad" name="txtmensualidad" data-validate="number" required placeholder="Campo num&eacute;rico" />
+                        <p id="mensualidad" name="mensualidad"></p>
+                        <input type="hidden" id="txtmensualidad" name="txtmensualidad" data-validate="number" value="11200" />
                         </div>
                     </div>
 

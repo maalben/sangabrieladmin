@@ -47,8 +47,13 @@ $beneficiariesModel = new BeneficiariesModel();
             $ownerRow = $ownerModel->getInformationOwner($ownerIdentify);
             ?>
         <tr class="odd gradeX">
-            <td><a href="javascript:;" onclick="jQuery('#modalOwner-<?php echo $ownerIdentify; ?>').modal('show',{backdrop:'static'});"><?php echo $ownerIdentify; ?></a></td>
-
+            <td>
+                <?php if($this->payModel->blockDetailsOwner($_SESSION['rol'], $_SESSION['username'], $dato['cedulatitular']) === 1){ ?>
+                <a href="javascript:;" onclick="jQuery('#modalOwner-<?php echo $ownerIdentify; ?>').modal('show',{backdrop:'static'});"><?php echo $ownerIdentify; ?></a>
+                <?php }else{
+                    echo $ownerIdentify;
+                } ?>
+            </td>
             <!-- Modal owner -->
             <div class="modal fade" id="modalOwner-<?php echo $ownerIdentify; ?>">
                 <div class="modal-dialog">
@@ -178,7 +183,13 @@ $beneficiariesModel = new BeneficiariesModel();
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="txtmensualidad" class="control-label">Mensualidad:</label>
-                                            <input type="text" class="form-control" id="txtmensualidad" name="txtmensualidad" value="<?php echo utf8_decode($ownerRow['mensualidadtitular']); ?>">
+
+                                            <?php if($_SESSION['rol'] === '1'){ ?>
+                                                <input type="text" class="form-control" id="txtmensualidad" name="txtmensualidad" value="<?php echo utf8_decode($ownerRow['mensualidadtitular']); ?>">
+                                            <?php }else{ ?>
+                                                <p><h4><b><?php echo utf8_decode($ownerRow['mensualidadtitular']); ?></b></h4></p>
+                                                <input type="hidden" id="txtmensualidad" name="txtmensualidad" value="<?php echo utf8_decode($ownerRow['mensualidadtitular']); ?>">
+                                            <?php  } ?>
                                         </div>
 
                                     </div>
@@ -204,10 +215,30 @@ $beneficiariesModel = new BeneficiariesModel();
                                     <div class="col-md-12">
                                         <div class="form-group no-margin">
                                             <label for="field-7" class="control-label">Registro realizado por:</label>
-                                            <p><?php echo utf8_decode($advisorModel->getNameAdvisor($ownerRow['codigoasesor'])) . ' ('.$ownerRow['codigoasesor'].')'; ?></p>
+                                            <p>
+                                                <?php
+                                                if(utf8_decode($advisorModel->getNameAdvisor($ownerRow['codigoasesor']))===''){
+                                                    echo 'Sin especificar código de asesor. -Actual: <b>'.$ownerRow['codigoasesor'].'</b>';
+                                                }else{
+                                                    echo utf8_decode($advisorModel->getNameAdvisor($ownerRow['codigoasesor'])) . ' (<b>'.$ownerRow['codigoasesor'].'</b>)';
+                                                }
+                                                ?>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
+
+                                <?php if($_SESSION['rol'] === '1'){ ?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="txtcambioasesor" name="txtcambioasesor" placeholder="(Opcional) Escriba el c&oacute;digo del asesor si desea asignarlo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php }else{  ?>
+                                    <input type="hidden" id="txtcambioasesor" name="txtcambioasesor">
+                                <?php } ?>
 
                                 <div class="row">
                                     <div class="col-md-12">
@@ -233,13 +264,15 @@ $beneficiariesModel = new BeneficiariesModel();
                     </form>
                 </div>
             </div>
-
-
             <td><?php echo $dato['cedulabeneficiario']; ?></td>
-            <td><?php echo utf8_decode($dato['nombrebeneficiario']) . ' ' . utf8_decode($dato['apellidobeneficiario']); ?></td>
-            <td align="center"><a href="javascript:;" onclick="jQuery('#modalBeneficiaries-<?php echo $Identify; ?>').modal('show', {backdrop: 'static'});"><i class="fa fa-eye"></i></a></td>
+            <td><?php echo $dato['nombrebeneficiario'] . ' ' . $dato['apellidobeneficiario']; ?></td>
+            <td align="center">
 
+                <?php if($this->payModel->blockDetailsOwner($_SESSION['rol'], $_SESSION['username'], $dato['cedulatitular']) === 1){ ?>
+                    <a href="javascript:;" onclick="jQuery('#modalBeneficiaries-<?php echo $Identify; ?>').modal('show', {backdrop: 'static'});"><i class="fa fa-eye"></i></a>
+                <?php } ?>
 
+            </td>
             <!-- Modal 6 -->
             <div class="modal fade" id="modalBeneficiaries-<?php echo $Identify; ?>">
                 <div class="modal-dialog">
@@ -249,7 +282,7 @@ $beneficiariesModel = new BeneficiariesModel();
 
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Informaci&oacute;n del beneficiario <?php echo utf8_decode($dato['nombrebeneficiario']) . ' ' . utf8_decode($dato['apellidobeneficiario']); ?></h4>
+                                <h4 class="modal-title">Informaci&oacute;n del beneficiario <?php echo $dato['nombrebeneficiario'] . ' ' . $dato['apellidobeneficiario']; ?></h4>
                             </div>
                             <div class="modal-body">
 
@@ -270,14 +303,14 @@ $beneficiariesModel = new BeneficiariesModel();
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="txtnombrebeneficiario" class="control-label">Nombre</label>
-                                            <input type="text" class="form-control" id="txtnombrebeneficiario" name="txtnombrebeneficiario" value="<?php echo utf8_decode($dato['nombrebeneficiario']); ?>">
+                                            <input type="text" class="form-control" id="txtnombrebeneficiario" name="txtnombrebeneficiario" value="<?php echo $dato['nombrebeneficiario']; ?>">
                                         </div>
 
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="txtapellidobeneficiario" class="control-label">Apellido</label>
-                                            <input type="text" class="form-control" id="txtapellidobeneficiario" name="txtapellidobeneficiario" value="<?php echo utf8_decode($dato['apellidobeneficiario']); ?>">
+                                            <input type="text" class="form-control" id="txtapellidobeneficiario" name="txtapellidobeneficiario" value="<?php echo $dato['apellidobeneficiario']; ?>">
                                         </div>
 
                                     </div>
@@ -307,7 +340,6 @@ $beneficiariesModel = new BeneficiariesModel();
                                                         <option value="Madre" <?php if ($relationship === 'Madre'): ?>selected<?php endif; ?>>Madre</option>
                                                         <option value="Hijo/A" <?php if ($relationship === 'Hijo/A'): ?>selected<?php endif; ?>>Hijo/A</option>
                                                         <option value="Sobrino/A" <?php if ($relationship === 'Sobrino/A'): ?>selected<?php endif; ?>>Sobrino/A</option>
-                                                        <option value="Bello" <?php if ($relationship === 'Bello'): ?>selected<?php endif; ?>>Bello</option>
                                                         <option value="Cuñado/A" <?php if ($relationship === 'Cuñado/A'): ?>selected<?php endif; ?>>Cuñado/A</option>
                                                         <option value="Padrastro" <?php if ($relationship === 'Padrastro'): ?>selected<?php endif; ?>>Padrastro</option>
                                                         <option value="Nieto/A" <?php if ($relationship === 'Nieto/A'): ?>selected<?php endif; ?>>Nieto/A</option>

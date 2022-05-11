@@ -184,7 +184,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="txtmensualidad" class="control-label">Mensualidad:</label>
-                                        <input type="text" class="form-control" id="txtmensualidad" name="txtmensualidad" value="<?php echo utf8_decode($dato['mensualidadtitular']); ?>">
+
+                                        <?php if($_SESSION['rol'] === '1'){ ?>
+                                            <input type="text" class="form-control" id="txtmensualidad" name="txtmensualidad" value="<?php echo utf8_decode($dato['mensualidadtitular']); ?>">
+                                        <?php }else{ ?>
+                                            <p><h4><b><?php echo utf8_decode($dato['mensualidadtitular']); ?></b></h4></p>
+                                            <input type="hidden" id="txtmensualidad" name="txtmensualidad" value="<?php echo utf8_decode($dato['mensualidadtitular']); ?>">
+                                        <?php  } ?>
+
+
                                     </div>
 
                                 </div>
@@ -210,18 +218,30 @@
                                 <div class="col-md-12">
                                     <div class="form-group no-margin">
                                         <label for="field-7" class="control-label">Registro realizado por:</label>
-                                        <p><?php echo utf8_decode($advisorModel->getNameAdvisor($dato['codigoasesor'])) . ' ('.$dato['codigoasesor'].')'; ?></p>
+                                        <p>
+                                            <?php
+                                            if(utf8_decode($advisorModel->getNameAdvisor($dato['codigoasesor']))===''){
+                                                echo 'Sin especificar código de asesor. -Actual: <b>'.$dato['codigoasesor'].'</b>';
+                                            }else{
+                                                echo utf8_decode($advisorModel->getNameAdvisor($dato['codigoasesor'])) . ' (<b>'.$dato['codigoasesor'].'</b>)';
+                                            }
+                                            ?>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="txtcambioasesor" name="txtcambioasesor" placeholder="(Opcional) Escriba el c&oacute;digo
- del asesor si desea cambiarlo">
+
+                            <?php if($_SESSION['rol'] === '1'){ ?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtcambioasesor" name="txtcambioasesor" placeholder="(Opcional) Escriba el c&oacute;digo del asesor si desea asignarlo">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php }else{  ?>
+                                <input type="hidden" id="txtcambioasesor" name="txtcambioasesor">
+                            <?php } ?>
 
                             <div class="row">
                                 <div class="col-md-12">

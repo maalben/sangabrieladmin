@@ -80,7 +80,6 @@
                                 <option value="Madre">Madre</option>
                                 <option value="Hijo/A">Hijo/A</option>
                                 <option value="Sobrino/A">Sobrino/A</option>
-                                <option value="Bello">Bello</option>
                                 <option value="Cuñado/A">Cuñado/A</option>
                                 <option value="Padrastro">Padrastro</option>
                                 <option value="Nieto/A">Nieto/A</option>

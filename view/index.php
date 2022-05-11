@@ -7,6 +7,8 @@
 //    echo "Rol: ".$_SESSION['rol'] . "<br>";
 //    echo "ID: ".$_SESSION['id'] . "<br>";
 ?>
+
+<?php if($_SESSION['rol'] === '1'){ ?>
     <div class="col-sm-3 col-xs-6">
 
         <div class="tile-stats tile-red">
@@ -16,6 +18,8 @@
         </div>
 
     </div>
+
+<?php } ?>
 
     <div class="col-sm-3 col-xs-6">
 
